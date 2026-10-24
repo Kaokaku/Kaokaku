@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kaokaku · Developer</title>
+<style>
+  :root {
+    --bg: #0a0e17;
+    --card: #111827;
+    --neon: #00f0ff;
+    --neon2: #a855f7;
+    --text: #e5e7eb;
+    --muted: #9ca3af;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    overflow-x: hidden;
+  }
+  #particles { position: fixed; inset: 0; z-index: 0; }
+  .container {
+    position: relative; z-index: 1;
+    max-width: 900px; margin: 0 auto; padding: 60px 24px;
+  }
+  /* Hero */
+  .hero { text-align: center; padding: 60px 0 40px; }
+  .avatar {
+    width: 140px; height: 140px; border-radius: 50%;
+    border: 3px solid transparent;
+    background: linear-gradient(var(--bg), var(--bg)) padding-box,
+                linear-gradient(135deg, var(--neon), var(--neon2)) border-box;
+    box-shadow: 0 0 40px rgba(0, 240, 255, .35);
+  }
+  h1 {
+    margin-top: 24px; font-size: 2.6rem;
+    background: linear-gradient(90deg, var(--neon), var(--neon2));
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .typing {
+    margin-top: 12px; font-size: 1.2rem; color: var(--muted);
+    min-height: 1.6em; font-family: Consolas, monospace;
+  }
+  .typing .cursor { color: var(--neon); animation: blink 1s step-end infinite; }
+  @keyframes blink { 50% { opacity: 0; } }
+  .badges { margin-top: 20px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .btn {
+    padding: 10px 22px; border-radius: 999px; text-decoration: none;
+    color: var(--text); border: 1px solid rgba(0,240,255,.4);
+    background: rgba(0,240,255,.08); transition: .25s;
+    font-size: .95rem;
+  }
+  .btn:hover { box-shadow: 0 0 18px rgba(0,240,255,.5); transform: translateY(-2px); }
+  /* Sections */
+  section { margin-top: 64px; }
+  h2 {
+    font-size: 1.6rem; margin-bottom: 24px; display: flex; align-items: center; gap: 12px;
+  }
+  h2::before {
+    content: ""; width: 4px; height: 1.4em;
+    background: linear-gradient(var(--neon), var(--neon2)); border-radius: 2px;
+  }
+  /* About */
+  .about-card {
+    background: var(--card); border: 1px solid rgba(255,255,255,.06);
+    border-radius: 16px; padding: 28px; line-height: 1.9; color: var(--muted);
+  }
+  .about-card strong { color: var(--neon); }
+  /* Skills */
+  .skills { display: flex; flex-wrap: wrap; gap: 12px; }
+  .skill {
+    padding: 8px 18px; border-radius: 10px; font-family: Consolas, monospace;
+    background: rgba(168,85,247,.1); border: 1px solid rgba(168,85,247,.35);
+    transition: .25s; font-size: .95rem;
+  }
+  .skill:hover { box-shadow: 0 0 14px rgba(168,85,247,.5); transform: translateY(-2px); }
+  /* Projects */
+  .projects { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+  .project {
+    background: var(--card); border: 1px solid rgba(255,255,255,.06);
+    border-radius: 16px; padding: 24px; transition: .25s;
+    text-decoration: none; color: inherit; display: block;
+  }
+  .project:hover { border-color: rgba(0,240,255,.5); box-shadow: 0 0 24px rgba(0,240,255,.2); transform: translateY(-4px); }
+  .project h3 { color: var(--neon); font-size: 1.15rem; margin-bottom: 10px; }
+  .project p { color: var(--muted); font-size: .92rem; line-height: 1.7; }
+  .project .tags { margin-top: 14px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .project .tags span {
+    font-size: .75rem; padding: 3px 10px; border-radius: 999px;
+    background: rgba(0,240,255,.08); border: 1px solid rgba(0,240,255,.25); color: var(--neon);
+  }
+  /* Stats */
+  .stats { display: grid; gap: 16px; justify-items: center; }
+  .stats img { max-width: 100%; border-radius: 12px; }
+  /* Footer */
+  footer {
+    margin-top: 80px; text-align: center; color: var(--muted);
+    font-size: .85rem; padding-bottom: 20px;
+  }
+  footer a { color: var(--neon); text-decoration: none; }
+</style>
+</head>
+<body>
+<canvas id="particles"></canvas>
+<div class="container">
+
+  <div class="hero">
+    <img class="avatar" src="https://github.com/Kaokaku.png" alt="Kaokaku">
+    <h1>Kaokaku</h1>
+    <div class="typing"><span id="typewriter"></span><span class="cursor">▊</span></div>
+    <div class="badges">
+      <a class="btn" href="https://github.com/Kaokaku" target="_blank">GitHub</a>
+      <!-- 按需替换为你的其他链接 -->
+      <a class="btn" href="mailto:your-email@example.com">Email</a>
+      <a class="btn" href="#" target="_blank">Blog</a>
+    </div>
+  </div>
+
+  <section>
+    <h2>关于我</h2>
+    <div class="about-card">
+      <p>
+        你好，我是 <strong>Kaokaku</strong>。<!-- 在这里写一段自我介绍 -->
+        热爱编程与开源，喜欢探索新技术，专注于打造优雅而实用的解决方案。
+      </p>
+      <ul style="margin-top:12px; list-style:none;">
+        <li>🔭 正在进行：<!-- 当前项目 --></li>
+        <li>🌱 正在学习：<!-- 学习方向 --></li>
+        <li>💬 欢迎交流：<!-- 感兴趣的话题 --></li>
+        <li>⚡ 兴趣爱好：<!-- 爱好 --></li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2>技术栈</h2>
+    <div class="skills">
+      <!-- 按需增删 -->
+      <span class="skill">Python</span>
+      <span class="skill">JavaScript</span>
+      <span class="skill">TypeScript</span>
+      <span class="skill">Vue</span>
+      <span class="skill">Node.js</span>
+      <span class="skill">Git</span>
+      <span class="skill">Linux</span>
+      <span class="skill">Docker</span>
+    </div>
+  </section>
+
+  <section>
+    <h2>精选项目</h2>
+    <div class="projects">
+      <!-- 按需增删，替换链接与描述 -->
+      <a class="project" href="https://github.com/Kaokaku?tab=repositories" target="_blank">
+        <h3>项目名称 1</h3>
+        <p>项目简介：一句话说明这个项目解决了什么问题、有什么亮点。</p>
+        <div class="tags"><span>Python</span><span>Web</span></div>
+      </a>
+      <a class="project" href="https://github.com/Kaokaku?tab=repositories" target="_blank">
+        <h3>项目名称 2</h3>
+        <p>项目简介：一句话说明这个项目解决了什么问题、有什么亮点。</p>
+        <div class="tags"><span>JavaScript</span><span>工具</span></div>
+      </a>
+      <a class="project" href="https://github.com/Kaokaku?tab=repositories" target="_blank">
+        <h3>项目名称 3</h3>
+        <p>项目简介：一句话说明这个项目解决了什么问题、有什么亮点。</p>
+        <div class="tags"><span>Vue</span><span>前端</span></div>
+      </a>
+    </div>
+  </section>
+
+  <section>
+    <h2>GitHub 统计</h2>
+    <div class="stats">
+      <img src="https://github-readme-stats.vercel.app/api?username=Kaokaku&show_icons=true&theme=tokyonight&hide_border=true" alt="GitHub Stats">
+      <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Kaokaku&layout=compact&theme=tokyonight&hide_border=true" alt="Top Languages">
+      <img src="https://streak-stats.demolab.com?user=Kaokaku&theme=tokyonight&hide_border=true" alt="GitHub Streak">
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 <a href="https://github.com/Kaokaku" target="_blank">Kaokaku</a> · Built with 💙 and open source</p>
+  </footer>
+</div>
+
+<script>
+// 打字机效果
+const lines = [
+  "你好，我是 Kaokaku 👋",
+  "热爱编程 / 开源 / 新技术",
+  "Welcome to my page!"
+];
+const el = document.getElementById("typewriter");
+let li = 0, ci = 0, deleting = false;
+(function tick() {
+  const text = lines[li];
+  el.textContent = text.slice(0, ci);
+  if (!deleting && ci < text.length) { ci++; setTimeout(tick, 90); }
+  else if (!deleting) { deleting = true; setTimeout(tick, 1800); }
+  else if (ci > 0) { ci--; setTimeout(tick, 40); }
+  else { deleting = false; li = (li + 1) % lines.length; setTimeout(tick, 300); }
+})();
+
+// 粒子背景
+const canvas = document.getElementById("particles");
+const ctx = canvas.getContext("2d");
+let W, H, pts;
+function resize() {
+  W = canvas.width = innerWidth;
+  H = canvas.height = innerHeight;
+  pts = Array.from({ length: Math.min(90, W / 14) }, () => ({
+    x: Math.random() * W, y: Math.random() * H,
+    vx: (Math.random() - .5) * .4, vy: (Math.random() - .5) * .4,
+    r: Math.random() * 1.8 + .6
+  }));
+}
+resize(); addEventListener("resize", resize);
+(function draw() {
+  ctx.clearRect(0, 0, W, H);
+  for (const p of pts) {
+    p.x += p.vx; p.y += p.vy;
+    if (p.x < 0 || p.x > W) p.vx *= -1;
+    if (p.y < 0 || p.y > H) p.vy *= -1;
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.r, 0, 7);
+    ctx.fillStyle = "rgba(0,240,255,.6)";
+    ctx.fill();
+  }
+  for (let i = 0; i < pts.length; i++)
+    for (let j = i + 1; j < pts.length; j++) {
+      const dx = pts[i].x - pts[j].x, dy = pts[i].y - pts[j].y;
+      const d = dx * dx + dy * dy;
+      if (d < 12000) {
+        ctx.beginPath();
+        ctx.moveTo(pts[i].x, pts[i].y);
+        ctx.lineTo(pts[j].x, pts[j].y);
+        ctx.strokeStyle = `rgba(168,85,247,${0.25 * (1 - d / 12000)})`;
+        ctx.stroke();
+      }
+    }
+  requestAnimationFrame(draw);
+})();
+</script>
+</body>
+</html>
