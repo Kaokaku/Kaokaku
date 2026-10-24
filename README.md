@@ -4,7 +4,7 @@
 
 I'm new here. 
 
-- 🌱 majoring in：<!-- 学习方向 --> Machine Learning, Numerical Optimization.
+- 🌱 majoring in：<!-- 学习方向 --> Mathematics and AI engineering.
 
 
 ## 🛠 Tech Stack
@@ -21,5 +21,5 @@ I'm new here.
 
 ## 🚀 Featured Projects
 
-## 🌐 个人主页
+## 🌐 Personal Website
 
